@@ -3,9 +3,8 @@ import {Route, Redirect} from 'react-router-dom';
 import {authContext} from './ProvideAuth';
 
 function AuthGuard (props) {
-
-  const userState = useContext(authContext);
-  const goTo = userState.isAuthenticated ? <Redirect to="/login" /> : props.children
+  const { isAuthenticated } = useContext(authContext);
+  const goTo = isAuthenticated? props.children : <Redirect to="/login" />
 
   return(
     <Route>

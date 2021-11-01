@@ -13,6 +13,10 @@ function PostForm (props) {
       content: content
     };
 
+    if (!content.trim()) {
+      return;
+    }
+
     props.setPost([...props.posts, newPost]);
   }
 

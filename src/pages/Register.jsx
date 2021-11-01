@@ -1,18 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import {authContext} from '../auth/ProvideAuth';
 
-function Login(props) {
+function Register(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  let { setIsAuthenticated } = useContext(authContext);
-  let { setToken } = useContext(authContext);
   let history = useHistory();
 
   function handleChangeUsername(e) {
@@ -27,17 +24,12 @@ function Login(props) {
       return;
     }
     axios
-      .post("https://segware-book-api.segware.io/api/sign-in", {
+      .post("https://segware-book-api.segware.io/api/sign-up", {
         username: username,
         password: password
       })
       .then((response) => {
-        setIsAuthenticated(true);
-        setToken(response.data);
-        history.push('/')
-      })
-      .catch((response) => {
-        alert("Usuário ou senha inválida");
+        history.push('/login')
       });
   }
 
@@ -68,9 +60,8 @@ function Login(props) {
                 />
               </Form.Group>
               <Button variant="primary" type="submit">
-                Entrar
+                Registrar
               </Button>
-              <div className="mt-2"><Link to="/registrar">Registrar</Link></div>
             </Form>
           </Card.Body>
         </Card>
@@ -79,4 +70,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Register;
