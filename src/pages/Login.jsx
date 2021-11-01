@@ -71,6 +71,7 @@ function Login(props) {
                 Entrar
               </Button>
               <div className="mt-2"><Link to="/registrar">Registrar</Link></div>
+              <div className="mt-2"><Link to="/recuperar">Recuperar</Link></div>
             </Form>
           </Card.Body>
         </Card>

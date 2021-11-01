@@ -7,6 +7,7 @@ import ProvideAuth from "./auth/ProvideAuth"
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
             <AuthGuard>
               <Route exact path="/" component={Home}/>
             </AuthGuard>
-
             <Route exact path="/login" component={Login}/>
             <Route exact path="/registrar" component={Register}/>
+            <Route exact path="/recuperar" component={ResetPassword}/>
         </Suspense>
       </BrowserRouter>
     </ProvideAuth>
