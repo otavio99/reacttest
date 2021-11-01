@@ -1,32 +1,25 @@
-import { useState, useEffect } from "react";
-import './App.css';
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
+import AuthGuard from "./auth/AuthGuard"
+import ProvideAuth from "./auth/ProvideAuth"
 
-import PostForm from "./components/PostForm";
-import Post from "./components/Post";
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
 
-function App(props) {
-  const [posts, setPosts] = useState(props.posts);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "#fcfcfc"
-  });
-
-  const postList = posts
-  .map(post => (
-    <Post
-      content={post.content}
-    />
-  ));
-
+function App() {
   return (
-    <Container>
-      <div className="ml-auto mr-auto mt-5" style={{ maxWidth: 600 }}>
-        <PostForm />
-        {postList}
-      </div>
-    </Container>
+    <ProvideAuth>
+      <BrowserRouter>
+        <Suspense fallback={<div></div>}>
+            <AuthGuard>
+              <Route exact path="/" component={Home}/>
+            </AuthGuard>
+
+            <Route exact path="/login" component={Login}/>
+        </Suspense>
+      </BrowserRouter>
+    </ProvideAuth>
   );
 }
 

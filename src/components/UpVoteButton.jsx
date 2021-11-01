@@ -1,11 +1,30 @@
+import { useState } from "react";
 import Button from 'react-bootstrap/Button';
-import { ImArrowUp } from 'react-icons/im';
+import { BsFillSuitHeartFill } from 'react-icons/bs';
+import { AiFillLike } from 'react-icons/ai';
 
 function UpVoteButton () {
+
+  const [upVotes, setUpVote] = useState([]);
+
+  function addUpVote() {
+    const up = {
+      feedId: 0,
+      like: true,
+      love: true
+    };
+    setUpVote([...upVotes, up]);
+  }
+
   return(
-    <Button variant="secondary">
-       12 <ImArrowUp className="align-text-top"/>
-    </Button>
+    <div>
+      <Button variant="primary" onClick={() => addUpVote()}>
+         {upVotes.length} <AiFillLike className="align-text-top"/>
+      </Button>
+      <Button variant="danger" onClick={() => addUpVote()} className="ml-1">
+         {upVotes.length} <BsFillSuitHeartFill className="align-text-top"/>
+      </Button>
+    </div>
   );
 }
 
