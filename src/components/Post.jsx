@@ -1,5 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import UpVoteButton from "./UpVoteButton";
+import UpVoteButtons from "./UpVoteButtons";
 
 function Post (props) {
 
@@ -9,7 +9,13 @@ function Post (props) {
         <p>{props.content}</p>
       </Card.Body>
       <div>
-        <UpVoteButton />
+        <UpVoteButtons
+          likes={props.likes}
+          loves={props.loves}
+          feedId={props.feedId}
+          reload={props.reload}
+          setReload={props.setReload}
+        />
       </div>
     </Card>
   );

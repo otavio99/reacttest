@@ -23,6 +23,7 @@ function Home() {
       )
       .then((response) => {
         setPosts([...response.data]);
+        console.log(response);
       })
       .catch((response) => {
         alert("Erro, tente novamente.");
@@ -33,7 +34,12 @@ function Home() {
   .map(post => (
     <Post
       content={post.content}
-      key={post.authorId}
+      key={post.id}
+      feedId={post.id}
+      likes={post.likes}
+      loves={post.loves}
+      reload={reload}
+      setReload={setReload}
     />
   ));
 
