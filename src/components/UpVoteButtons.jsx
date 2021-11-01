@@ -21,7 +21,6 @@ function UpVoteButtons (props) {
       )
       .then((response) => {
         props.setReload(!props.reload);
-        console.log(response);
       })
       .catch((response) => {
         alert("Erro, tente novamente.");

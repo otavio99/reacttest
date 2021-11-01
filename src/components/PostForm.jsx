@@ -31,7 +31,6 @@ function PostForm (props) {
       .then((response) => {
         setContent("");
         props.setReload(!props.reload);
-        console.log(response);
       })
       .catch((response) => {
         alert("Erro, tente novamente.");

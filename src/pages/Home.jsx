@@ -23,7 +23,6 @@ function Home() {
       )
       .then((response) => {
         setPosts([...response.data]);
-        console.log(response);
       })
       .catch((response) => {
         alert("Erro, tente novamente.");
