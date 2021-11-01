@@ -1,23 +1,41 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import {authContext} from '../auth/ProvideAuth';
 
 function PostForm (props) {
   const [content, setContent] = useState("");
+  let { token } = useContext(authContext);
+  let history = useHistory();
 
   function submitPost() {
-    const newPost =   {
-      authorId: Math.random(1000),
-      content: content
-    };
-
     if (!content.trim()) {
       return;
     }
 
-    props.setPost([...props.posts, newPost]);
+    axios
+      .post(
+        "https://segware-book-api.segware.io/api/feed",
+        {
+          content: content
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        }
+      )
+      .then((response) => {
+        setContent("");
+        props.setReload(!props.reload);
+        console.log(response);
+      })
+      .catch((response) => {
+        alert("Erro, tente novamente.");
+      });
   }
 
   function handleChange(e) {
