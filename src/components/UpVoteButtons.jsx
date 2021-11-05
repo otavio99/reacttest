@@ -15,7 +15,7 @@ function UpVoteButtons (props) {
         up,
         {
           headers: {
-            Authorization: 'Bearer innerHTML' + token
+            Authorization: 'Bearer ' + token
           }
         }
       )

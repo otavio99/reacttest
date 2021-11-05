@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -9,7 +8,6 @@ import {authContext} from '../auth/ProvideAuth';
 function PostForm (props) {
   const [content, setContent] = useState("");
   let { token } = useContext(authContext);
-  let history = useHistory();
 
   function submitPost() {
     if (!content.trim()) {
@@ -50,7 +48,7 @@ function PostForm (props) {
             <Form.Control as="textarea" rows={3} value={content} onChange={handleChange} />
           </Form.Group>
 
-          <Button variant="info" type="button" className="mt-2" onClick={submitPost}>
+          <Button id="postFormButton" variant="info" type="button" className="mt-2" onClick={submitPost}>
             Postar
           </Button>
         </Form>

@@ -29,4 +29,7 @@ it("renderisa formulario para postagem", () => {
 
   const labelPostForm = document.querySelector(".form-label");
   expect(labelPostForm.textContent).toBe("Poste um texto");
+
+  const buttonPostForm = document.getElementById('postFormButton');
+  expect(buttonPostForm.textContent).toBe("Postar");
 });

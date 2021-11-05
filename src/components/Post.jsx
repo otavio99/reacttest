@@ -6,7 +6,7 @@ function Post (props) {
   return(
     <Card className='shadow p-3 mb-5 bg-white rounded'>
       <Card.Body>
-        <p>{props.content}</p>
+        <p id={""+props.feedId}>{props.content}</p>
       </Card.Body>
       <div>
         <UpVoteButtons
