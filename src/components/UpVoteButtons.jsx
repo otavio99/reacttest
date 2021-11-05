@@ -15,7 +15,7 @@ function UpVoteButtons (props) {
         up,
         {
           headers: {
-            Authorization: 'Bearer ' + token
+            Authorization: 'Bearer innerHTML' + token
           }
         }
       )
@@ -45,10 +45,10 @@ function UpVoteButtons (props) {
 
   return(
     <div>
-      <Button variant="primary" onClick={() => addLikeVote()}>
+      <Button id="likeButton" variant="primary" onClick={() => addLikeVote()}>
          {props.likes} <AiFillLike className="align-text-top"/>
       </Button>
-      <Button variant="danger" onClick={() => addLoveVote()} className="ml-1">
+      <Button id="loveButton" variant="danger" onClick={() => addLoveVote()} className="ml-1">
          {props.loves} <BsFillSuitHeartFill className="align-text-top"/>
       </Button>
     </div>
